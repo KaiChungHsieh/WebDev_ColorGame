@@ -1,2 +1,4 @@
 # WebDev_ColorGame
-Web development project, Color Game, using HTML, CSS, Javascript
+
+This is a Color Game website, which is a web develop training project.
+Skills using: HTML, CSS, Javascript
