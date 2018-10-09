@@ -1,5 +1,5 @@
-var colors = generateRandomColors(6);
-
+var numSquares = 6;
+var colors = generateRandomColors(numSquares);
 // var colors = [
 // 	"rgb(255, 0, 0)",
 // 	"rgb(255, 255, 0)",
@@ -14,8 +14,49 @@ var pickedColor = pickColor();
 var colorDisplay = document.getElementById("colorDisplay");
 var messageDisplay = document.querySelector("#message");
 var h1 = document.querySelector("h1");
+var resetButton = document.querySelector("#reset");
+var easyButton = document.querySelector('#easyButton');
+var hardButton = document.querySelector('#hardButton');
+
 
 colorDisplay.textContent = pickedColor;
+
+easyButton.addEventListener("click", function() {
+	easyButton.classList.add("selected");
+	hardButton.classList.remove("selected");
+	numSquares = 3;
+	colors = generateRandomColors(numSquares);
+	pickedColor = pickColor();
+	colorDisplay.textContent = pickedColor;
+	for(var i = 0; i < squares.length; i++) {
+		if(colors[i]) squares[i].style.backgroundColor = colors[i];
+		else squares[i].style.display = "none";
+	}
+});
+
+hardButton.addEventListener("click", function() {
+	easyButton.classList.remove("selected");
+	hardButton.classList.add("selected");
+	numSquares = 6;
+	colors = generateRandomColors(numSquares);
+	pickedColor = pickColor();
+	colorDisplay.textContent = pickedColor;
+	for(var i = 0; i < squares.length; i++) {
+		squares[i].style.backgroundColor = colors[i];
+		squares[i].style.display = "block";
+	}
+});
+
+resetButton.addEventListener("click", function() {
+	//alert("RESET");
+	colors = generateRandomColors(numSquares);
+	pickedColor = pickColor();
+	colorDisplay.textContent = pickedColor;
+	for(var i = 0; i < squares.length; i++) {
+		squares[i].style.backgroundColor = colors[i];
+	}
+	h1.style.backgroundColor = "#232323";
+});
 
 for(var i = 0; i < squares.length; i++) {
 	squares[i].style.backgroundColor = colors[i];
@@ -28,6 +69,7 @@ for(var i = 0; i < squares.length; i++) {
 			messageDisplay.textContent = "Correct!!";
 			changeColor(clickedColor);
 			h1.style.backgroundColor = clickedColor;
+			resetButton.textContent = "Play Again?";
 		} else {
 			//alert("WRONG!");
 			this.style.backgroundColor = "#232323";
